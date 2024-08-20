@@ -8,9 +8,19 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 
+// open and close route 
+import OpenRoute from './components/core/Auth/OpenRoute';
+
 // Login and Signup
 import Login from './pages/Login';
 import Error from './components/common/Error';
+import Signup from './pages/Signup'
+
+import { ACCOUNT_TYPE } from './utils/constants';
+
+import LoadingBar from 'react-top-loading-bar'
+import { setProgress } from './slice/loadingbarSlice';
+import VerifyEmail from './pages/VerifyEmail';
 
 function App() {
   return (
@@ -23,9 +33,26 @@ function App() {
         <Route path='/blog' element={<Blog />} />
         <Route path='*' element={<Error />} />
 
+        <Route path='signup'
+          element={
+            <OpenRoute>
+              <Signup />
+            </OpenRoute>
+          }
+        />
         <Route path='login'
           element={
-            <Login />
+            <OpenRoute>
+              <Login />
+            </OpenRoute>
+          }
+        />
+
+        <Route path='verify-email'
+          element={
+            <OpenRoute>
+              <VerifyEmail />
+            </OpenRoute>
           }
         />
 

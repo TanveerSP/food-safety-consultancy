@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+
+import { login } from '../../../services/operations/authAPI'
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  })
+
   const [showPassword, setShowPassword] = useState(false);
+  const { email, password } = formData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,11 +23,23 @@ const LoginForm = () => {
     console.log('Password:', password);
   };
 
+  const handleOnChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    dispatch(login(email, password, navigate))
+  }
+
   return (
     <>
       <form
         className='mt-6 flex lg:min-w-[400px] md:min-w-[300px] flex-col gap-y-4'
-        onSubmit={handleSubmit} // Form submission handler
+        onSubmit={handleOnSubmit} // Form submission handler
       >
         {/* Email Field */}
         <label className='w-full'>
@@ -26,12 +47,12 @@ const LoginForm = () => {
             Email Address
           </p>
           <input
-            type="email"
             required
-            name="email" // Name should be a string
+            type="text"
+            name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update state with the input value
-            placeholder='Enter email address'
+            onChange={handleOnChange}
+            placeholder="Enter email address"
             className='w-full bg-maincolor-first h-[2.5rem] rounded-lg px-3 border-[1px] border-bluedianne-950 text-bluedianne-950 placeholder-bluedianne-950'
           />
         </label>
@@ -42,16 +63,17 @@ const LoginForm = () => {
             Password
           </p>
           <input
+            required
             type={showPassword ? "text" : "password"}
-            name='password'
+            name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // Update state with the input value
-            placeholder='Enter Password'
+            onChange={handleOnChange}
+            placeholder="Enter Password"
             className='w-full mb-1 bg-maincolor-first h-[2.5rem] rounded-lg px-3 border-[1px] border-bluedianne-950 text-bluedianne-950 placeholder-bluedianne-950'
           />
           <span
             className='absolute right-3 top-9 z-[10] cursor-pointer'
-            onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
               <FiEye fontSize={20} className='text-bluedianne-950' />

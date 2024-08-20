@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       white: "#fff",
       black: "#000",
-      carbanblack:"#1C1D20",
+      carbanblack: "#1C1D20",
       transparent: "#ffffff00",
       'bluedianne-500': '#173b45',
 
@@ -29,6 +29,21 @@ module.exports = {
         700: "#2C333F",
         800: "#161D29",
         900: "#000814",
+      },
+
+      yellow: {
+        5: "#FFF970",
+        25: "#FFE83D",
+        50: "#FFD60A",
+        100: "#E7C009",
+        200: "#CFAB08",
+        300: "#B69507",
+        400: "#9E8006",
+        500: "#866A04",
+        600: "#6E5503",
+        700: "#553F02",
+        800: "#3D2A01",
+        900: "#251400",
       },
 
       //  we used in webpage
@@ -58,14 +73,14 @@ module.exports = {
         900: "#7E1B10",
         950: "#440906",
       },
-      
+
       maincolor: {
         first: "#F8EDED",
         second: "#D2D3FF",
         third: "#E1ECE6",
-        fourth:"#FDEEB3",
-        fifth:"#B43F3F",
-        sixsth:"#695C5C",
+        fourth: "#FDEEB3",
+        fifth: "#B43F3F",
+        sixsth: "#695C5C",
       },
 
       webcolor: {
@@ -128,5 +143,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],   
+  plugins: [],
 };

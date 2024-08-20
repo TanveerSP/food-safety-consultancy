@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '../../common/Button'
-import { MdOutlineArrowCircleRight } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
@@ -18,7 +17,7 @@ const Banner = () => {
             Achieve complete compliance with experts at your side
           </p>
           <div className='flex mt-4 gap-4 items-start'>
-            <Link >
+            <Link to={"/signup"} >
               <Button onClick={""} variant="bg-maincolor-fifth" textcolor="text-maincolor-first" textsize='text-sm'
                 children={"Learn More"}
               ></Button>
